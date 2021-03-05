@@ -46,7 +46,7 @@ resource "aws_s3_bucket_object" "ignition" {
 resource "aws_iam_instance_profile" "bootstrap" {
   name = "${var.cluster_id}-bootstrap-profile"
 
-  role = aws_iam_role.bootstrap.name
+  role = var.iam_role ? var.iam_role : aws_iam_role.bootstrap.name
 }
 
 resource "aws_iam_role" "bootstrap" {
@@ -75,6 +75,8 @@ EOF
     },
     var.tags,
   )
+
+  count = var.iam_role ? 0 : 1
 }
 
 resource "aws_iam_role_policy" "bootstrap" {
@@ -103,6 +105,8 @@ resource "aws_iam_role_policy" "bootstrap" {
   ]
 }
 EOF
+
+  count = var.iam_role ? 0 : 1
 
 }
 

@@ -246,6 +246,8 @@ func (t *TerraformVariables) Generate(parents asset.Parents) error {
 			IgnitionBucket:        bucket,
 			IgnitionPresignedURL:  url,
 			AdditionalTrustBundle: installConfig.Config.AdditionalTrustBundle,
+			MasterIAMRole:         installConfig.Config.ControlPlane.Platform.AWS.IAMRole,
+			WorkerIAMRole:         installConfig.Config.Compute[0].Platform.AWS.IAMRole,
 		})
 		if err != nil {
 			return errors.Wrapf(err, "failed to get %s Terraform variables", platform)

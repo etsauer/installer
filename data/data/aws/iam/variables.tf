@@ -8,3 +8,7 @@ variable "tags" {
   description = "AWS tags to be applied to created resources."
 }
 
+variable "iam_role" {
+  type = string
+  description "The role to use for instances"
+}

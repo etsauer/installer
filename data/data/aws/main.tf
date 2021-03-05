@@ -40,6 +40,7 @@ module "bootstrap" {
   vpc_security_group_ids   = [module.vpc.master_sg_id]
   volume_kms_key_id        = var.aws_master_root_volume_kms_key_id
   publish_strategy         = var.aws_publish_strategy
+  iam_role                 = var.iam_role
 
   tags = local.tags
 }
@@ -66,12 +67,14 @@ module "masters" {
   ec2_ami                  = var.aws_region == var.aws_ami_region ? var.aws_ami : aws_ami_copy.imported[0].id
   user_data_ign            = var.ignition_master
   publish_strategy         = var.aws_publish_strategy
+  iam_role                 = var.iam_role
 }
 
 module "iam" {
   source = "./iam"
 
   cluster_id = var.cluster_id
+  iam_role   = var.iam_role
 
   tags = local.tags
 }

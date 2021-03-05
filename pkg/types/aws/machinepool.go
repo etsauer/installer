@@ -24,6 +24,11 @@ type MachinePool struct {
 	//
 	// +optional
 	EC2RootVolume `json:"rootVolume"`
+
+	// IAMRole allows for user to pass pre-created IAM roles for machine pool.
+	//
+	// +optional
+	IAMRole string `json:"iamRole,omitempty"`
 }
 
 // Set sets the values from `required` to `a`.
@@ -55,6 +60,10 @@ func (a *MachinePool) Set(required *MachinePool) {
 	}
 	if required.EC2RootVolume.KMSKeyARN != "" {
 		a.EC2RootVolume.KMSKeyARN = required.EC2RootVolume.KMSKeyARN
+	}
+
+	if required.IAMRole != "" {
+		a.IAMRole = required.IAMRole
 	}
 }
 

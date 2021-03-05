@@ -90,3 +90,8 @@ and therefore are force to implicitly assume that the list is of aws_lb_target_g
 helps to decide if the target_group_arns is of length (target_group_arns_length) or (target_group_arns_length - 1)
 EOF
 }
+
+variable "iam_role" {
+  type = string
+  description "The role to use for this machine type"
+}

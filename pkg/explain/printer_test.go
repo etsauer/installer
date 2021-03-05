@@ -299,6 +299,15 @@ VERSION:  v1
 RESOURCE: <string>
   URL is fully qualified URI with scheme https, that overrides the default generated endpoint for a client. This must be provided and cannot be empty.
 `,
+	}, {
+		path: []string{"platform", "aws", "iamRole"},
+		desc: `
+KIND:     InstallConfig
+VERSION:  v1
+
+RESOURCE: <string>
+  The name of a user-created IAM Role to use. This takes the place of an installer-created role.
+`,
 	}}
 	for _, test := range cases {
 		t.Run("", func(t *testing.T) {

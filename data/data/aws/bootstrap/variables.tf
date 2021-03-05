@@ -96,3 +96,8 @@ variable "publish_strategy" {
   type = string
   description = "The publishing strategy for endpoints like load balancers"
 }
+
+variable "iam_role" {
+  type = string
+  description "The role to use for this machine type"
+}
